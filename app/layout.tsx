@@ -6,7 +6,13 @@ import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: 'SaaSForge | Discover and Acquire Micro-SaaS',
-  description: 'A clean, modern platform for developers to list their SaaS for sale or advertise it.',
+  description: 'The premium marketplace for developers to sell, buy, and discover micro-SaaS projects. Built with Next.js, Tailwind, and Motion.',
+  keywords: ['saas', 'marketplace', 'micro-saas', 'developer', 'acquisition', 'buy saas', 'sell saas'],
+  openGraph: {
+    title: 'SaaSForge | Discover and Acquire Micro-SaaS',
+    description: 'The premium marketplace for developers to sell, buy, and discover micro-SaaS projects.',
+    type: 'website',
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Logo } from '@/components/Logo';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,10 +9,8 @@ export function Footer() {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
           <div className="flex flex-col gap-4 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex size-6 items-center justify-center rounded bg-primary text-primary-foreground font-bold text-xs">
-                S
-              </div>
+            <Link href="/" className="flex items-center gap-2 group">
+              <Logo className="size-6 transition-transform group-hover:scale-105" />
               <span className="font-display font-bold">SaaSForge</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">

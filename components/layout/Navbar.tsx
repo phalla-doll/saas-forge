@@ -1,16 +1,15 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { Logo } from '@/components/Logo';
 
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
-              S
-            </div>
+          <Link href="/" className="flex items-center gap-2 group">
+            <Logo className="size-8 transition-transform group-hover:scale-105" />
             <span className="font-display font-bold text-lg hidden sm:inline-block">SaaSForge</span>
           </Link>
 

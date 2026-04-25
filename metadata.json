@@ -1,6 +1,6 @@
 {
   "name": "SaaSForge",
-  "description": "A clean, modern platform for developers to list, buy, or sell SaaS projects.",
+  "description": "The premium marketplace for developers to sell, buy, and discover micro-SaaS projects. Built with Next.js, Tailwind, and Motion.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }
