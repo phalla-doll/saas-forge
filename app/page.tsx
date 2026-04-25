@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { TrendingUp, Users, DollarSign, ExternalLink, ArrowRight, Settings2 } from 'lucide-react';
+import { TrendingUp, Users, DollarSign, ExternalLink, ArrowRight, Settings2, ChevronDown } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -405,10 +405,26 @@ const itemVariants = {
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<string>('recent');
 
   const filteredListings = activeFilter
     ? FEATURED_LISTINGS.filter(listing => listing.techRoot.includes(activeFilter))
     : FEATURED_LISTINGS;
+
+  const sortedListings = [...filteredListings].sort((a, b) => {
+    switch (sortBy) {
+      case 'price-high':
+        return b.askingPrice - a.askingPrice;
+      case 'price-low':
+        return a.askingPrice - b.askingPrice;
+      case 'mrr-high':
+        return b.mrr - a.mrr;
+      case 'recent':
+      default:
+        // preserve original insertion order
+        return 0;
+    }
+  });
 
   return (
     <main className="flex-1 w-full relative">
@@ -418,51 +434,60 @@ export default function Home() {
       {/* Featured Listings Grid */}
       <section className="py-16 md:py-24 bg-secondary/30 border-t border-border/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-6">
-            <div>
-              <h2 className="text-3xl font-display font-bold">Featured Projects</h2>
-              <p className="text-muted-foreground mt-2">Curated, high-quality projects currently on the market.</p>
-            </div>
-            <Link href="/explore">
-              <Button variant="ghost" className="hidden sm:flex group">
-                View all projects
-                <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
+          <div className="mb-8">
+            <h2 className="text-3xl font-display font-bold">Featured Projects</h2>
+            <p className="text-muted-foreground mt-2">Curated, high-quality projects currently on the market.</p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 mb-10">
-            {TECH_FILTERS.map((filter) => {
-              const isActive = activeFilter === filter.name;
-              return (
-                <Badge 
-                  key={filter.name} 
-                  variant="secondary" 
-                  onClick={() => setActiveFilter(isActive ? null : filter.name)}
-                  className={`cursor-pointer px-3 py-1.5 text-sm font-medium border transition-colors flex items-center shadow-sm select-none ${
-                    isActive 
-                      ? "bg-primary text-primary-foreground border-primary hover:bg-primary/90" 
-                      : "border-border bg-card text-foreground hover:bg-secondary/80"
-                  }`}
-                >
-                  {filter.name}
-                  <span className={`ml-2 text-xs px-1.5 py-0.5 rounded-sm ${isActive ? 'bg-primary-foreground/20' : 'bg-muted text-muted-foreground'}`}>
-                    {filter.count}
-                  </span>
-                </Badge>
-              );
-            })}
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
+            <div className="flex flex-wrap items-center gap-2">
+              {TECH_FILTERS.map((filter) => {
+                const isActive = activeFilter === filter.name;
+                return (
+                  <Badge 
+                    key={filter.name} 
+                    variant="secondary" 
+                    onClick={() => setActiveFilter(isActive ? null : filter.name)}
+                    className={`cursor-pointer px-3 py-1.5 text-sm font-medium border transition-colors flex items-center shadow-sm select-none ${
+                      isActive 
+                        ? "bg-primary text-primary-foreground border-primary hover:bg-primary/90" 
+                        : "border-border bg-card text-foreground hover:bg-secondary/80"
+                    }`}
+                  >
+                    {filter.name}
+                    <span className={`ml-2 text-xs px-1.5 py-0.5 rounded-sm ${isActive ? 'bg-primary-foreground/20' : 'bg-muted text-muted-foreground'}`}>
+                      {filter.count}
+                    </span>
+                  </Badge>
+                );
+              })}
+            </div>
+            
+            <div className="flex items-center relative shrink-0">
+              <Settings2 className="size-4 text-muted-foreground absolute left-3 pointer-events-none" />
+              <select 
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="pl-9 pr-10 py-1.5 text-sm font-medium bg-card border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none shadow-sm cursor-pointer hover:border-primary/50 transition-colors"
+              >
+                <option value="recent">Recently Added</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="mrr-high">Highest MRR</option>
+              </select>
+              <ChevronDown className="size-4 text-muted-foreground absolute right-3 pointer-events-none" />
+            </div>
           </div>
 
           <motion.div 
-            key={activeFilter || 'all'}
+            key={`${activeFilter || 'all'}-${sortBy}`}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
           >
-            {filteredListings.length > 0 ? (
-              filteredListings.map((listing) => (
+            {sortedListings.length > 0 ? (
+              sortedListings.map((listing) => (
               <motion.div 
                 key={listing.id} 
                 variants={itemVariants}
@@ -546,12 +571,6 @@ export default function Home() {
               </div>
             )}
           </motion.div>
-
-          <div className="mt-8 sm:hidden">
-            <Button variant="outline" className="w-full">
-              View all projects
-            </Button>
-          </div>
         </div>
       </section>
 
