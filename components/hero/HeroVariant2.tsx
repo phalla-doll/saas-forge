@@ -66,7 +66,7 @@ export function HeroVariant2() {
           transition={{ opacity: { duration: 2, delay: 1 }, y: { repeat: Infinity, duration: 8, ease: "easeInOut" }, rotate: { repeat: Infinity, duration: 12, ease: "easeInOut" } }}
           className="absolute top-[15%] left-[20%] hidden xl:block"
         >
-          <SvglIcon name="react" size={80} />
+          <SvglIcon name="claude" size={80} />
         </motion.div>
         
         <motion.div
@@ -75,7 +75,7 @@ export function HeroVariant2() {
           transition={{ opacity: { duration: 2, delay: 1.5 }, y: { repeat: Infinity, duration: 9, ease: "easeInOut", delay: 1 }, rotate: { repeat: Infinity, duration: 15, ease: "easeInOut" } }}
           className="absolute bottom-[25%] right-[25%] hidden xl:block"
         >
-          <SvglIcon name="typescript" size={100} />
+          <SvglIcon name="codex" size={100} />
         </motion.div>
         
         <motion.div
@@ -84,7 +84,7 @@ export function HeroVariant2() {
           transition={{ opacity: { duration: 2, delay: 0.8 }, y: { repeat: Infinity, duration: 7, ease: "easeInOut" }, x: { repeat: Infinity, duration: 10, ease: "easeInOut" } }}
           className="absolute top-[40%] right-[15%] hidden lg:block xl:hidden"
         >
-          <SvglIcon name="tailwind" size={60} />
+          <SvglIcon name="cursor" size={60} />
         </motion.div>
 
         {/* Top Left Card */}
