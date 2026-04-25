@@ -2,6 +2,9 @@
 @import "tw-animate-css";
 
 @theme {
+  --font-sans: 'Satoshi', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: 'Clash Display', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
