@@ -66,7 +66,7 @@ export function HeroVariant2() {
           transition={{ opacity: { duration: 2, delay: 1 }, y: { repeat: Infinity, duration: 8, ease: "easeInOut" }, rotate: { repeat: Infinity, duration: 12, ease: "easeInOut" } }}
           className="absolute top-[12%] left-[8%] md:top-[15%] md:left-[15%] xl:left-[20%] scale-50 sm:scale-75 md:scale-100"
         >
-          <SvglIcon name="anthropic" size={80} />
+          <SvglIcon name="Claude AI" size={80} />
         </motion.div>
         
         <motion.div
