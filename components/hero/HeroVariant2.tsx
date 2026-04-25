@@ -21,8 +21,8 @@ export function HeroVariant2() {
           className="mb-8 hidden sm:flex"
         >
           <Badge variant="outline" className="px-4 py-1.5 text-sm rounded-full bg-background/80 backdrop-blur border-primary/20">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-500 mr-2 animate-pulse" />
-            <span className="font-semibold text-foreground mr-1">12 new</span> micro-SaaS projects listed today
+            <Users className="h-4 w-4 mr-2 text-primary" />
+            <span className="font-semibold text-foreground mr-1">Join 10k+</span> founders & investors
           </Badge>
         </motion.div>
 
