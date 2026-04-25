@@ -6,6 +6,7 @@ import { TrendingUp, Users, DollarSign, ExternalLink, ArrowRight, Settings2 } fr
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Import Hero Variants
 import { HeroVariant2 } from '@/components/hero/HeroVariant2';
@@ -32,7 +33,8 @@ const FEATURED_LISTINGS = [
     metrics: { users: 240, active: "68%" },
     techRoot: ["Next.js", "OpenAI", "PostgreSQL", "React", "Node.js"],
     tags: ["AI", "Marketing"],
-    revenueType: "B2B SaaS"
+    revenueType: "B2B SaaS",
+    previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
   },
   {
     id: "lst_2",
@@ -43,7 +45,8 @@ const FEATURED_LISTINGS = [
     metrics: { users: 45, active: "95%" },
     techRoot: ["Rust", "Redis", "WebSockets"],
     tags: ["Developer Tool", "API"],
-    revenueType: "B2B SaaS"
+    revenueType: "B2B SaaS",
+    previewImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80"
   },
   {
     id: "lst_3",
@@ -54,7 +57,8 @@ const FEATURED_LISTINGS = [
     metrics: { users: 110, active: "45%" },
     techRoot: ["Solidity", "TypeScript", "React"],
     tags: ["Crypto", "Security"],
-    revenueType: "Token + SaaS"
+    revenueType: "Token + SaaS",
+    previewImage: "https://images.unsplash.com/photo-1639762681485-074b7f4ec651?w=800&q=80"
   },
   {
     id: "lst_4",
@@ -65,7 +69,8 @@ const FEATURED_LISTINGS = [
     metrics: { users: 1200, active: "30%" },
     techRoot: ["TypeScript", "Figma API", "React", "Tailwind CSS"],
     tags: ["Design Tool", "Plugin"],
-    revenueType: "One-time + PRO"
+    revenueType: "One-time + PRO",
+    previewImage: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?w=800&q=80"
   },
   {
     id: "lst_5",
@@ -76,7 +81,8 @@ const FEATURED_LISTINGS = [
     metrics: { users: 850, active: "85%" },
     techRoot: ["Node.js", "MongoDB", "Express"],
     tags: ["No-Code", "API"],
-    revenueType: "B2B SaaS"
+    revenueType: "B2B SaaS",
+    previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
   },
   {
     id: "lst_6",
@@ -87,7 +93,8 @@ const FEATURED_LISTINGS = [
     metrics: { users: "3.2k", active: "55%" },
     techRoot: ["Go", "ClickHouse", "Next.js", "React"],
     tags: ["DevOps", "Open Source"],
-    revenueType: "Enterprise Support"
+    revenueType: "Enterprise Support",
+    previewImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80"
   },
   {
     id: "lst_7",
@@ -98,7 +105,8 @@ const FEATURED_LISTINGS = [
     metrics: { users: 215, active: "72%" },
     techRoot: ["Node.js", "Redis", "Supabase", "Next.js"],
     tags: ["DevOps", "Database"],
-    revenueType: "Usage-based"
+    revenueType: "Usage-based",
+    previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
   },
   {
     id: "lst_8",
@@ -109,7 +117,8 @@ const FEATURED_LISTINGS = [
     metrics: { users: 430, active: "88%" },
     techRoot: ["React", "Stripe", "Supabase", "Tailwind CSS"],
     tags: ["Finance", "Analytics"],
-    revenueType: "B2B SaaS"
+    revenueType: "B2B SaaS",
+    previewImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
   },
   {
     id: "lst_9",
@@ -120,7 +129,8 @@ const FEATURED_LISTINGS = [
     metrics: { users: 512, active: "64%" },
     techRoot: ["Next.js", "React", "OpenAI", "Tailwind CSS"],
     tags: ["AI", "Developer Tool"],
-    revenueType: "B2B SaaS"
+    revenueType: "B2B SaaS",
+    previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
   }
 ];
 
@@ -221,6 +231,17 @@ export default function Home() {
                     <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-1">Asking</p>
                     <p className="text-xl font-bold">${listing.askingPrice.toLocaleString()}</p>
                   </div>
+                </div>
+
+                {/* Preview Image */}
+                <div className="relative w-full h-40 mb-4 overflow-hidden rounded-xl border border-border group-hover:border-primary/20 transition-colors">
+                  <Image 
+                    src={listing.previewImage || "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"}
+                    alt={`${listing.name} preview`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
 
                 <p className="text-muted-foreground text-sm line-clamp-2 mb-6">
