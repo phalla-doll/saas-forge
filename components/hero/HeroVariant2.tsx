@@ -64,7 +64,7 @@ export function HeroVariant2() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.15, y: [0, -20, 0], rotate: [0, 10, 0] }}
           transition={{ opacity: { duration: 2, delay: 1 }, y: { repeat: Infinity, duration: 8, ease: "easeInOut" }, rotate: { repeat: Infinity, duration: 12, ease: "easeInOut" } }}
-          className="absolute top-[15%] left-[20%] hidden xl:block"
+          className="absolute top-[12%] left-[8%] md:top-[15%] md:left-[15%] xl:left-[20%] scale-50 sm:scale-75 md:scale-100"
         >
           <SvglIcon name="claude" size={80} />
         </motion.div>
@@ -73,7 +73,7 @@ export function HeroVariant2() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.1, y: [0, 30, 0], rotate: [0, -15, 0] }}
           transition={{ opacity: { duration: 2, delay: 1.5 }, y: { repeat: Infinity, duration: 9, ease: "easeInOut", delay: 1 }, rotate: { repeat: Infinity, duration: 15, ease: "easeInOut" } }}
-          className="absolute bottom-[25%] right-[25%] hidden xl:block"
+          className="absolute bottom-[20%] right-[10%] md:bottom-[25%] md:right-[20%] xl:right-[25%] scale-50 sm:scale-75 md:scale-100"
         >
           <SvglIcon name="codex" size={100} />
         </motion.div>
@@ -82,7 +82,7 @@ export function HeroVariant2() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.15, y: [0, -15, 0], x: [0, 15, 0] }}
           transition={{ opacity: { duration: 2, delay: 0.8 }, y: { repeat: Infinity, duration: 7, ease: "easeInOut" }, x: { repeat: Infinity, duration: 10, ease: "easeInOut" } }}
-          className="absolute top-[40%] right-[15%] hidden lg:block xl:hidden"
+          className="absolute top-[35%] right-[8%] md:top-[40%] md:right-[10%] xl:right-[15%] scale-50 sm:scale-75 md:scale-100"
         >
           <SvglIcon name="cursor" size={60} />
         </motion.div>
