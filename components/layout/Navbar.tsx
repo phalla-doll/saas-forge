@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Logo } from '@/components/Logo';
@@ -21,6 +22,14 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
+          <div className="relative hidden lg:flex items-center">
+            <Search className="absolute left-2.5 h-4 w-4 text-muted-foreground" />
+            <input
+              type="search"
+              placeholder="Search micro-SaaS..."
+              className="h-9 w-64 rounded-md border border-input bg-background pl-9 pr-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring placeholder:text-muted-foreground"
+            />
+          </div>
           <ThemeToggle />
           <nav className="flex items-center gap-2">
             <Link href="/login" className="hidden sm:inline-block">
