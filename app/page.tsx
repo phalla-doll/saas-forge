@@ -1,10 +1,16 @@
 "use client";
 
-import { motion } from 'motion/react';
-import { TrendingUp, Users, DollarSign, ExternalLink, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { TrendingUp, Users, DollarSign, ExternalLink, ArrowRight, Settings2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+
+// Import Hero Variants
+import { HeroVariant1 } from '@/components/hero/HeroVariant1';
+import { HeroVariant2 } from '@/components/hero/HeroVariant2';
+import { HeroVariant3 } from '@/components/hero/HeroVariant3';
 
 // Mock Data
 const FEATURED_LISTINGS = [
@@ -94,54 +100,63 @@ const itemVariants = {
 };
 
 export default function Home() {
+  const [activeHero, setActiveHero] = useState<1 | 2 | 3>(1);
+
   return (
     <main className="flex-1 w-full relative">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 px-4 sm:px-6 lg:px-8 container mx-auto max-w-7xl">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-background to-background"></div>
-        <div className="text-center max-w-3xl mx-auto flex flex-col items-center">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-sm font-medium text-primary mb-6"
-          >
-            <TrendingUp className="size-4 text-primary" />
-            Over $2M in acquisitions this month
-          </motion.div>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="text-fluid-h1 font-display font-bold tracking-tight text-foreground"
-          >
-            Buy, Sell, and Discover <br className="hidden sm:inline" />
-            <span className="text-muted-foreground">Micro-SaaS Assets</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl"
-          >
-            The premium marketplace for independent developers and makers. Sell your side project, or find the perfect revenue-generating application to acquire.
-          </motion.p>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-            className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center"
-          >
-            <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-base shadow-lg">
-              Explore Listings
-              <ArrowRight className="ml-2 size-4" />
-            </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto h-14 px-8 text-base">
-              Sell your SaaS
-            </Button>
-          </motion.div>
+      
+      {/* Floating Theme / Hero Selector (Dev Only) */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-2 bg-background/80 backdrop-blur-md p-3 rounded-2xl border border-border shadow-2xl">
+        <div className="flex justify-center items-center gap-2 mb-2 w-full border-b border-border pb-2">
+          <Settings2 className="size-4 text-muted-foreground" />
+          <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Select Hero</span>
         </div>
-      </section>
+        <div className="flex flex-col gap-2 w-full">
+          <Button 
+            variant={activeHero === 1 ? 'default' : 'ghost'} 
+            onClick={() => setActiveHero(1)} 
+            size="sm"
+            className="w-full justify-start text-xs h-8"
+          >
+            Terminal Variant
+          </Button>
+          <Button 
+            variant={activeHero === 2 ? 'default' : 'ghost'} 
+            onClick={() => setActiveHero(2)} 
+            size="sm"
+            className="w-full justify-start text-xs h-8"
+          >
+            Floating Bento
+          </Button>
+          <Button 
+            variant={activeHero === 3 ? 'default' : 'ghost'} 
+            onClick={() => setActiveHero(3)} 
+            size="sm"
+            className="w-full justify-start text-xs h-8"
+          >
+            Brutalist Grid
+          </Button>
+        </div>
+      </div>
+
+      {/* Hero Section Rendering based on state */}
+      <AnimatePresence mode="wait">
+        {activeHero === 1 && (
+          <motion.div key="hero-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <HeroVariant1 />
+          </motion.div>
+        )}
+        {activeHero === 2 && (
+          <motion.div key="hero-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <HeroVariant2 />
+          </motion.div>
+        )}
+        {activeHero === 3 && (
+          <motion.div key="hero-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <HeroVariant3 />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Featured Listings Grid */}
       <section className="py-16 md:py-24 bg-secondary/30 border-t border-border/50">
