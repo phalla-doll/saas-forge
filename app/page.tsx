@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { TrendingUp, Users, DollarSign, ExternalLink, ArrowRight, Settings2, ChevronDown } from 'lucide-react';
+import { TrendingUp, Users, DollarSign, ExternalLink, ArrowRight, Settings2, ChevronDown, Search } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -406,10 +406,22 @@ const itemVariants = {
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<string>('recent');
+  const [showAllFilters, setShowAllFilters] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const filteredListings = activeFilter
+  let filteredListings = activeFilter
     ? FEATURED_LISTINGS.filter(listing => listing.techRoot.includes(activeFilter))
-    : FEATURED_LISTINGS;
+    : [...FEATURED_LISTINGS];
+
+  if (searchQuery.trim()) {
+    const query = searchQuery.toLowerCase();
+    filteredListings = filteredListings.filter(listing => 
+      listing.name.toLowerCase().includes(query) || 
+      listing.description.toLowerCase().includes(query) || 
+      listing.techRoot.some(tech => tech.toLowerCase().includes(query)) ||
+      listing.tags.some(tag => tag.toLowerCase().includes(query))
+    );
+  }
 
   const sortedListings = [...filteredListings].sort((a, b) => {
     switch (sortBy) {
@@ -434,21 +446,48 @@ export default function Home() {
       {/* Featured Listings Grid */}
       <section className="py-16 md:py-24 bg-secondary/30 border-t border-border/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="mb-8">
-            <h2 className="text-3xl font-display font-bold">Featured Projects</h2>
-            <p className="text-muted-foreground mt-2">Curated, high-quality projects currently on the market.</p>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-6">
+            <div>
+              <h2 className="text-3xl font-display font-bold">Featured Projects</h2>
+              <p className="text-muted-foreground mt-2">Curated, high-quality projects currently on the market.</p>
+            </div>
+            
+            <div className="relative group w-full sm:w-auto">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+              <input
+                type="search"
+                autoComplete="off"
+                placeholder="Search projects..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-10 w-full sm:w-64 rounded-md border border-input bg-card shadow-sm pl-9 pr-12 text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              />
+              <div className="absolute right-1.5 top-1/2 -translate-y-1/2 flex h-5 items-center gap-0.5 rounded border bg-background/50 px-1.5 font-mono text-[10px] font-medium text-muted-foreground pointer-events-none select-none">
+                <span className="text-xs">⌘</span>K
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
             <div className="flex flex-wrap items-center gap-2">
-              {TECH_FILTERS.map((filter) => {
+              {TECH_FILTERS.map((filter, index) => {
                 const isActive = activeFilter === filter.name;
+                
+                let visibilityClass = "";
+                if (!showAllFilters && !isActive) {
+                  if (index >= 2 && index < 6) {
+                    visibilityClass = "hidden md:flex";
+                  } else if (index >= 6) {
+                    visibilityClass = "hidden";
+                  }
+                }
+
                 return (
                   <Badge 
                     key={filter.name} 
                     variant="secondary" 
                     onClick={() => setActiveFilter(isActive ? null : filter.name)}
-                    className={`cursor-pointer px-3 py-1.5 text-sm font-medium border transition-colors flex items-center shadow-sm select-none ${
+                    className={`cursor-pointer px-3 py-1.5 text-sm font-medium border transition-colors flex items-center shadow-sm select-none ${visibilityClass} ${
                       isActive 
                         ? "bg-primary text-primary-foreground border-primary hover:bg-primary/90" 
                         : "border-border bg-card text-foreground hover:bg-secondary/80"
@@ -461,6 +500,29 @@ export default function Home() {
                   </Badge>
                 );
               })}
+              
+              {!showAllFilters && TECH_FILTERS.length > 2 && (
+                <Badge
+                  variant="secondary"
+                  onClick={() => setShowAllFilters(true)}
+                  className={`cursor-pointer px-3 py-1.5 text-sm font-medium border border-dashed border-border bg-transparent text-muted-foreground hover:bg-secondary/50 hover:text-foreground transition-colors flex items-center shadow-sm select-none ${TECH_FILTERS.length <= 6 ? 'md:hidden' : ''}`}
+                >
+                  <span className="md:hidden">+{TECH_FILTERS.length - 2} more</span>
+                  {TECH_FILTERS.length > 6 && (
+                    <span className="hidden md:inline">+{TECH_FILTERS.length - 6} more</span>
+                  )}
+                </Badge>
+              )}
+
+              {showAllFilters && (
+                <Badge
+                  variant="secondary"
+                  onClick={() => setShowAllFilters(false)}
+                  className="cursor-pointer px-3 py-1.5 text-sm font-medium border border-dashed border-border bg-transparent text-muted-foreground hover:bg-secondary/50 hover:text-foreground transition-colors flex items-center shadow-sm select-none"
+                >
+                  Show less
+                </Badge>
+              )}
             </div>
             
             <div className="flex items-center relative shrink-0">

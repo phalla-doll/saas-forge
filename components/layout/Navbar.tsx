@@ -22,20 +22,6 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="relative hidden lg:flex items-center group">
-            <Search className="absolute left-3 h-4 w-4 text-muted-foreground pointer-events-none" />
-            <input
-              type="search"
-              placeholder="Search micro-SaaS..."
-              className="h-9 w-48 lg:w-56 rounded-md border border-input bg-muted/40 hover:bg-muted/60 pl-9 pr-12 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:bg-background placeholder:text-muted-foreground"
-            />
-            <div className="absolute right-1.5 flex h-5 items-center gap-0.5 rounded border bg-background/50 px-1.5 font-mono text-[10px] font-medium text-muted-foreground pointer-events-none select-none">
-              <span className="text-xs">⌘</span>K
-            </div>
-          </div>
-          
-          <div className="h-5 w-px bg-border hidden lg:block mx-1" />
-          
           <ThemeToggle />
           
           <div className="flex items-center gap-2 ml-1">
