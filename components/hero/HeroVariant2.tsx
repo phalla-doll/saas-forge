@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowUpRight, TrendingUp, Users, Code, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { SvglIcon } from '@/components/SvglIcon';
 
 export function HeroVariant2() {
   return (
@@ -65,6 +66,35 @@ export function HeroVariant2() {
 
       {/* Floating Bento Grid Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden max-w-[100vw]">
+        
+        {/* Floating Ambient Tech Icons */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.15, y: [0, -20, 0], rotate: [0, 10, 0] }}
+          transition={{ opacity: { duration: 2, delay: 1 }, y: { repeat: Infinity, duration: 8, ease: "easeInOut" }, rotate: { repeat: Infinity, duration: 12, ease: "easeInOut" } }}
+          className="absolute top-[15%] left-[20%] hidden xl:block"
+        >
+          <SvglIcon name="react" size={80} />
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.1, y: [0, 30, 0], rotate: [0, -15, 0] }}
+          transition={{ opacity: { duration: 2, delay: 1.5 }, y: { repeat: Infinity, duration: 9, ease: "easeInOut", delay: 1 }, rotate: { repeat: Infinity, duration: 15, ease: "easeInOut" } }}
+          className="absolute bottom-[25%] right-[25%] hidden xl:block"
+        >
+          <SvglIcon name="typescript" size={100} />
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.15, y: [0, -15, 0], x: [0, 15, 0] }}
+          transition={{ opacity: { duration: 2, delay: 0.8 }, y: { repeat: Infinity, duration: 7, ease: "easeInOut" }, x: { repeat: Infinity, duration: 10, ease: "easeInOut" } }}
+          className="absolute top-[40%] right-[15%] hidden lg:block xl:hidden"
+        >
+          <SvglIcon name="tailwind" size={60} />
+        </motion.div>
+
         {/* Top Left Card */}
         <motion.div 
           initial={{ opacity: 0, x: -50, y: -20 }}
@@ -89,10 +119,16 @@ export function HeroVariant2() {
           <div className="flex items-center gap-2 mb-3 text-muted-foreground text-xs font-semibold uppercase tracking-wider">
             <Code className="size-3" /> Stack
           </div>
-          <div className="flex flex-wrap gap-2">
-            <span className="px-2 py-1 bg-primary text-primary-foreground text-xs rounded font-medium">Next.js</span>
-            <span className="px-2 py-1 bg-secondary text-secondary-foreground text-xs rounded font-medium">PostgreSQL</span>
-            <span className="px-2 py-1 bg-secondary text-secondary-foreground text-xs rounded font-medium">Stripe</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="flex items-center gap-1.5 px-2 py-1 bg-secondary border border-border text-secondary-foreground text-xs rounded-md font-medium">
+              <SvglIcon name="next.js" size={14} /> Next.js
+            </span>
+            <span className="flex items-center gap-1.5 px-2 py-1 bg-secondary border border-border text-secondary-foreground text-xs rounded-md font-medium">
+              <SvglIcon name="postgre" size={14} /> PostgreSQL
+            </span>
+            <span className="flex items-center gap-1.5 px-2 py-1 bg-secondary border border-border text-secondary-foreground text-xs rounded-md font-medium">
+              <SvglIcon name="stripe" size={14} /> Stripe
+            </span>
           </div>
         </motion.div>
 
