@@ -162,9 +162,18 @@ export function HeroVariant2() {
           </div>
           <div className="text-3xl font-bold font-display">12,400</div>
           <div className="flex -space-x-2 mt-2">
-            {[1,2,3,4].map((i) => (
-              <div key={i} className={`size-6 rounded-full border-2 border-background bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-[10px] font-medium`}>
-              </div>
+            {[
+              "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop&crop=faces",
+              "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=64&h=64&fit=crop&crop=faces",
+              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=faces",
+              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=faces"
+            ].map((src, i) => (
+              <img 
+                key={i} 
+                src={src} 
+                alt={`User ${i+1}`}
+                className="size-6 rounded-full border-2 border-background object-cover"
+              />
             ))}
             <div className="size-6 rounded-full border-2 border-background bg-secondary flex items-center justify-center text-[8px] font-medium">+1k</div>
           </div>
