@@ -21,24 +21,31 @@ export function Navbar() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="relative hidden lg:flex items-center">
-            <Search className="absolute left-2.5 h-4 w-4 text-muted-foreground" />
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="relative hidden lg:flex items-center group">
+            <Search className="absolute left-3 h-4 w-4 text-muted-foreground pointer-events-none" />
             <input
               type="search"
               placeholder="Search micro-SaaS..."
-              className="h-9 w-64 rounded-md border border-input bg-background pl-9 pr-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring placeholder:text-muted-foreground"
+              className="h-9 w-48 lg:w-56 rounded-md border border-input bg-muted/40 hover:bg-muted/60 pl-9 pr-12 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:bg-background placeholder:text-muted-foreground"
             />
+            <div className="absolute right-1.5 flex h-5 items-center gap-0.5 rounded border bg-background/50 px-1.5 font-mono text-[10px] font-medium text-muted-foreground pointer-events-none select-none">
+              <span className="text-xs">⌘</span>K
+            </div>
           </div>
+          
+          <div className="h-5 w-px bg-border hidden lg:block mx-1" />
+          
           <ThemeToggle />
-          <nav className="flex items-center gap-2">
+          
+          <div className="flex items-center gap-2 ml-1">
             <Link href="/login" className="hidden sm:inline-block">
-              <Button variant="ghost" className="font-medium">Log in</Button>
+              <Button variant="ghost" size="sm" className="font-medium px-4">Log in</Button>
             </Link>
             <Link href="/list-saas">
-              <Button>List your SaaS</Button>
+              <Button size="sm" className="px-4 font-medium">List your SaaS</Button>
             </Link>
-          </nav>
+          </div>
         </div>
       </div>
     </header>
