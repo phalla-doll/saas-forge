@@ -62,7 +62,7 @@ export function HeroVariant2() {
         {/* Floating Ambient Tech Icons */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.15, y: [0, -20, 0], rotate: [0, 10, 0] }}
+          animate={{ opacity: 0.4, y: [0, -20, 0], rotate: [0, 10, 0] }}
           transition={{ opacity: { duration: 2, delay: 1 }, y: { repeat: Infinity, duration: 8, ease: "easeInOut" }, rotate: { repeat: Infinity, duration: 12, ease: "easeInOut" } }}
           className="absolute top-[12%] left-[8%] md:top-[15%] md:left-[15%] xl:left-[20%] scale-50 sm:scale-75 md:scale-100"
         >
@@ -71,7 +71,7 @@ export function HeroVariant2() {
         
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1, y: [0, -25, 0], rotate: [0, -5, 0] }}
+          animate={{ opacity: 0.4, y: [0, -25, 0], rotate: [0, -5, 0] }}
           transition={{ opacity: { duration: 2, delay: 1.2 }, y: { repeat: Infinity, duration: 10, ease: "easeInOut" }, rotate: { repeat: Infinity, duration: 14, ease: "easeInOut" } }}
           className="absolute bottom-[25%] left-[8%] md:bottom-[30%] md:left-[12%] xl:left-[18%] scale-50 sm:scale-75 md:scale-100"
         >
@@ -80,7 +80,7 @@ export function HeroVariant2() {
         
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1, y: [0, 30, 0], rotate: [0, -15, 0] }}
+          animate={{ opacity: 0.3, y: [0, 30, 0], rotate: [0, -15, 0] }}
           transition={{ opacity: { duration: 2, delay: 1.5 }, y: { repeat: Infinity, duration: 9, ease: "easeInOut", delay: 1 }, rotate: { repeat: Infinity, duration: 15, ease: "easeInOut" } }}
           className="absolute bottom-[20%] right-[10%] md:bottom-[25%] md:right-[20%] xl:right-[25%] scale-50 sm:scale-75 md:scale-100"
         >
@@ -89,7 +89,7 @@ export function HeroVariant2() {
         
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.15, y: [0, -15, 0], x: [0, 15, 0] }}
+          animate={{ opacity: 0.4, y: [0, -15, 0], x: [0, 15, 0] }}
           transition={{ opacity: { duration: 2, delay: 0.8 }, y: { repeat: Infinity, duration: 7, ease: "easeInOut" }, x: { repeat: Infinity, duration: 10, ease: "easeInOut" } }}
           className="absolute top-[35%] right-[8%] md:top-[40%] md:right-[10%] xl:right-[15%] scale-50 sm:scale-75 md:scale-100"
         >
