@@ -66,7 +66,16 @@ export function HeroVariant2() {
           transition={{ opacity: { duration: 2, delay: 1 }, y: { repeat: Infinity, duration: 8, ease: "easeInOut" }, rotate: { repeat: Infinity, duration: 12, ease: "easeInOut" } }}
           className="absolute top-[12%] left-[8%] md:top-[15%] md:left-[15%] xl:left-[20%] scale-50 sm:scale-75 md:scale-100"
         >
-          <SvglIcon name="claude" size={80} />
+          <SvglIcon name="anthropic" size={80} />
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.1, y: [0, -25, 0], rotate: [0, -5, 0] }}
+          transition={{ opacity: { duration: 2, delay: 1.2 }, y: { repeat: Infinity, duration: 10, ease: "easeInOut" }, rotate: { repeat: Infinity, duration: 14, ease: "easeInOut" } }}
+          className="absolute bottom-[25%] left-[8%] md:bottom-[30%] md:left-[12%] xl:left-[18%] scale-50 sm:scale-75 md:scale-100"
+        >
+          <SvglIcon name="vercel" size={90} />
         </motion.div>
         
         <motion.div
