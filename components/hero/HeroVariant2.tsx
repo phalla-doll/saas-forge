@@ -33,15 +33,7 @@ export function HeroVariant2() {
           className="text-fluid-h1 font-display font-bold tracking-tight mb-6"
         >
           The Ecosystem for <br />
-          <span className="relative inline-block">
-            <span className="relative z-10 text-primary">Micro-SaaS</span>
-            <motion.span 
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-              className="absolute bottom-1 left-0 right-0 h-4 bg-primary/20 -z-10 origin-left"
-            ></motion.span>
-          </span>
+          <span className="text-primary">Micro-SaaS</span>
         </motion.h1>
         
         <motion.p 
