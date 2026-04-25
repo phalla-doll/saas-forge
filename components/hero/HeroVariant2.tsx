@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowUpRight, TrendingUp, Users, Code, Zap } from 'lucide-react';
+import { ArrowUpRight, TrendingUp, Users, Code, Zap, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { SvglIcon } from '@/components/SvglIcon';
@@ -141,12 +141,12 @@ export function HeroVariant2() {
           className="absolute bottom-[20%] left-[10%] xl:left-[15%] hidden lg:flex items-center gap-4 p-4 rounded-2xl bg-card/80 backdrop-blur-md border border-border/50 shadow-xl"
         >
           <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center">
-            <Zap className="size-6 text-primary" />
+            <Layers className="size-6 text-primary" />
           </div>
           <div>
-            <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">Acquired</div>
-            <div className="text-sm font-bold">MailWizard App</div>
-            <div className="text-xs font-medium text-foreground">Just now • $45k</div>
+            <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">Total Listed</div>
+            <div className="text-xl md:text-2xl font-bold font-display leading-tight">2,543+</div>
+            <div className="text-xs font-medium text-muted-foreground">micro-SaaS projects</div>
           </div>
         </motion.div>
 
