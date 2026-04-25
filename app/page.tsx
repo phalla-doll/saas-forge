@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { TrendingUp, Users, DollarSign, ExternalLink, ArrowRight, Settings2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -29,7 +30,7 @@ const FEATURED_LISTINGS = [
     askingPrice: 45000,
     mrr: 1200,
     metrics: { users: 240, active: "68%" },
-    techRoot: ["Next.js", "OpenAI", "PostgreSQL"],
+    techRoot: ["Next.js", "OpenAI", "PostgreSQL", "React", "Node.js"],
     tags: ["AI", "Marketing"],
     revenueType: "B2B SaaS"
   },
@@ -62,7 +63,7 @@ const FEATURED_LISTINGS = [
     askingPrice: 28000,
     mrr: 850,
     metrics: { users: 1200, active: "30%" },
-    techRoot: ["TypeScript", "Figma API", "Vite"],
+    techRoot: ["TypeScript", "Figma API", "React", "Tailwind CSS"],
     tags: ["Design Tool", "Plugin"],
     revenueType: "One-time + PRO"
   },
@@ -84,9 +85,42 @@ const FEATURED_LISTINGS = [
     askingPrice: 95000,
     mrr: 3200,
     metrics: { users: "3.2k", active: "55%" },
-    techRoot: ["Go", "ClickHouse", "Next.js"],
+    techRoot: ["Go", "ClickHouse", "Next.js", "React"],
     tags: ["DevOps", "Open Source"],
     revenueType: "Enterprise Support"
+  },
+  {
+    id: "lst_7",
+    name: "SupaCache",
+    description: "High-performance edge caching layer optimized for Supabase.",
+    askingPrice: 32000,
+    mrr: 1100,
+    metrics: { users: 215, active: "72%" },
+    techRoot: ["Node.js", "Redis", "Supabase", "Next.js"],
+    tags: ["DevOps", "Database"],
+    revenueType: "Usage-based"
+  },
+  {
+    id: "lst_8",
+    name: "PayStream",
+    description: "Unified dashboard for managing multiple Stripe accounts and analytics.",
+    askingPrice: 65000,
+    mrr: 1800,
+    metrics: { users: 430, active: "88%" },
+    techRoot: ["React", "Stripe", "Supabase", "Tailwind CSS"],
+    tags: ["Finance", "Analytics"],
+    revenueType: "B2B SaaS"
+  },
+  {
+    id: "lst_9",
+    name: "PromptForge",
+    description: "A/B testing and analytics suite for OpenAI prompt engineering optimization.",
+    askingPrice: 115000,
+    mrr: 3800,
+    metrics: { users: 512, active: "64%" },
+    techRoot: ["Next.js", "React", "OpenAI", "Tailwind CSS"],
+    tags: ["AI", "Developer Tool"],
+    revenueType: "B2B SaaS"
   }
 ];
 
@@ -108,6 +142,12 @@ const itemVariants = {
 };
 
 export default function Home() {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  const filteredListings = activeFilter
+    ? FEATURED_LISTINGS.filter(listing => listing.techRoot.includes(activeFilter))
+    : FEATURED_LISTINGS;
+
   return (
     <main className="flex-1 w-full relative">
       
@@ -130,26 +170,37 @@ export default function Home() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 mb-10">
-            {TECH_FILTERS.map((filter) => (
-              <Badge 
-                key={filter.name} 
-                variant="secondary" 
-                className="cursor-pointer hover:bg-secondary/80 px-3 py-1.5 text-sm font-medium border border-border transition-colors bg-card text-foreground flex items-center shadow-sm"
-              >
-                {filter.name}
-                <span className="ml-2 text-muted-foreground text-xs bg-muted px-1.5 py-0.5 rounded-sm">{filter.count}</span>
-              </Badge>
-            ))}
+            {TECH_FILTERS.map((filter) => {
+              const isActive = activeFilter === filter.name;
+              return (
+                <Badge 
+                  key={filter.name} 
+                  variant="secondary" 
+                  onClick={() => setActiveFilter(isActive ? null : filter.name)}
+                  className={`cursor-pointer px-3 py-1.5 text-sm font-medium border transition-colors flex items-center shadow-sm select-none ${
+                    isActive 
+                      ? "bg-primary text-primary-foreground border-primary hover:bg-primary/90" 
+                      : "border-border bg-card text-foreground hover:bg-secondary/80"
+                  }`}
+                >
+                  {filter.name}
+                  <span className={`ml-2 text-xs px-1.5 py-0.5 rounded-sm ${isActive ? 'bg-primary-foreground/20' : 'bg-muted text-muted-foreground'}`}>
+                    {filter.count}
+                  </span>
+                </Badge>
+              );
+            })}
           </div>
 
           <motion.div 
+            key={activeFilter || 'all'}
             variants={containerVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
           >
-            {FEATURED_LISTINGS.map((listing) => (
+            {filteredListings.length > 0 ? (
+              filteredListings.map((listing) => (
               <motion.div 
                 key={listing.id} 
                 variants={itemVariants}
@@ -208,7 +259,18 @@ export default function Home() {
                   ))}
                 </div>
               </motion.div>
-            ))}
+            ))
+            ) : (
+              <div className="col-span-full py-12 text-center flex flex-col items-center">
+                <p className="text-muted-foreground mb-4">No projects found with the selected tech stack.</p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => setActiveFilter(null)}
+                >
+                  Clear filter
+                </Button>
+              </div>
+            )}
           </motion.div>
 
           <div className="mt-8 sm:hidden">
