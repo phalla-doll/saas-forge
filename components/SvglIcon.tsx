@@ -30,6 +30,10 @@ const hardcodedIcons: Record<string, string | { light: string; dark: string }> =
   "vercel": {
     light: "https://svgl.app/library/vercel.svg",
     dark: "https://svgl.app/library/vercel_dark.svg"
+  },
+  "github copilot": {
+    light: "https://svgl.app/library/copilot.svg",
+    dark: "https://svgl.app/library/copilot_dark.svg"
   }
 };
 

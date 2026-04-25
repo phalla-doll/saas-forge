@@ -75,7 +75,7 @@ export function HeroVariant2() {
           transition={{ opacity: { duration: 2, delay: 1.2 }, y: { repeat: Infinity, duration: 10, ease: "easeInOut" }, rotate: { repeat: Infinity, duration: 14, ease: "easeInOut" } }}
           className="absolute bottom-[25%] left-[8%] md:bottom-[30%] md:left-[12%] xl:left-[18%] scale-50 sm:scale-75 md:scale-100"
         >
-          <SvglIcon name="vercel" size={90} />
+          <SvglIcon name="github copilot" size={90} />
         </motion.div>
         
         <motion.div
