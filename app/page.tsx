@@ -1,16 +1,13 @@
 "use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { TrendingUp, Users, DollarSign, ExternalLink, ArrowRight, Settings2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 // Import Hero Variants
-import { HeroVariant1 } from '@/components/hero/HeroVariant1';
 import { HeroVariant2 } from '@/components/hero/HeroVariant2';
-import { HeroVariant3 } from '@/components/hero/HeroVariant3';
 
 // Mock Data
 const FEATURED_LISTINGS = [
@@ -100,63 +97,10 @@ const itemVariants = {
 };
 
 export default function Home() {
-  const [activeHero, setActiveHero] = useState<1 | 2 | 3>(1);
-
   return (
     <main className="flex-1 w-full relative">
       
-      {/* Floating Theme / Hero Selector (Dev Only) */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-2 bg-background/80 backdrop-blur-md p-3 rounded-2xl border border-border shadow-2xl">
-        <div className="flex justify-center items-center gap-2 mb-2 w-full border-b border-border pb-2">
-          <Settings2 className="size-4 text-muted-foreground" />
-          <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Select Hero</span>
-        </div>
-        <div className="flex flex-col gap-2 w-full">
-          <Button 
-            variant={activeHero === 1 ? 'default' : 'ghost'} 
-            onClick={() => setActiveHero(1)} 
-            size="sm"
-            className="w-full justify-start text-xs h-8"
-          >
-            Terminal Variant
-          </Button>
-          <Button 
-            variant={activeHero === 2 ? 'default' : 'ghost'} 
-            onClick={() => setActiveHero(2)} 
-            size="sm"
-            className="w-full justify-start text-xs h-8"
-          >
-            Floating Bento
-          </Button>
-          <Button 
-            variant={activeHero === 3 ? 'default' : 'ghost'} 
-            onClick={() => setActiveHero(3)} 
-            size="sm"
-            className="w-full justify-start text-xs h-8"
-          >
-            Brutalist Grid
-          </Button>
-        </div>
-      </div>
-
-      {/* Hero Section Rendering based on state */}
-      <AnimatePresence mode="wait">
-        {activeHero === 1 && (
-          <motion.div key="hero-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <HeroVariant1 />
-          </motion.div>
-        )}
-        {activeHero === 2 && (
-          <motion.div key="hero-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <HeroVariant2 />
-          </motion.div>
-        )}
-        {activeHero === 3 && (
-          <motion.div key="hero-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <HeroVariant3 />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <HeroVariant2 />
 
       {/* Featured Listings Grid */}
       <section className="py-16 md:py-24 bg-secondary/30 border-t border-border/50">
