@@ -9,6 +9,17 @@ import Link from 'next/link';
 // Import Hero Variants
 import { HeroVariant2 } from '@/components/hero/HeroVariant2';
 
+// Tech Stack Filters Data
+const TECH_FILTERS = [
+  { name: 'React', count: 342 },
+  { name: 'Next.js', count: 215 },
+  { name: 'Tailwind CSS', count: 189 },
+  { name: 'Node.js', count: 156 },
+  { name: 'Supabase', count: 98 },
+  { name: 'Stripe', count: 87 },
+  { name: 'OpenAI', count: 64 },
+];
+
 // Mock Data
 const FEATURED_LISTINGS = [
   {
@@ -105,7 +116,7 @@ export default function Home() {
       {/* Featured Listings Grid */}
       <section className="py-16 md:py-24 bg-secondary/30 border-t border-border/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-6">
             <div>
               <h2 className="text-3xl font-display font-bold">Featured Projects</h2>
               <p className="text-muted-foreground mt-2">Curated, high-quality projects currently on the market.</p>
@@ -116,6 +127,19 @@ export default function Home() {
                 <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 mb-10">
+            {TECH_FILTERS.map((filter) => (
+              <Badge 
+                key={filter.name} 
+                variant="secondary" 
+                className="cursor-pointer hover:bg-secondary/80 px-3 py-1.5 text-sm font-medium border border-border transition-colors bg-card text-foreground flex items-center shadow-sm"
+              >
+                {filter.name}
+                <span className="ml-2 text-muted-foreground text-xs bg-muted px-1.5 py-0.5 rounded-sm">{filter.count}</span>
+              </Badge>
+            ))}
           </div>
 
           <motion.div 
