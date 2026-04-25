@@ -20,8 +20,8 @@ const hardcodedIcons: Record<string, string | { light: string; dark: string }> =
     dark: "https://svgl.app/library/cursor_dark.svg"
   },
   "codex": {
-    light: "https://svgl.app/library/openai.svg",
-    dark: "https://svgl.app/library/openai_dark.svg"
+    light: "https://svgl.app/library/codex_light.svg",
+    dark: "https://svgl.app/library/codex_dark.svg"
   },
   "openai": {
     light: "https://svgl.app/library/openai.svg",
