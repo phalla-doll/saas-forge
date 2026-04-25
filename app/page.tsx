@@ -58,7 +58,7 @@ const FEATURED_LISTINGS = [
     techRoot: ["Solidity", "TypeScript", "React"],
     tags: ["Crypto", "Security"],
     revenueType: "Token + SaaS",
-    previewImage: "https://images.unsplash.com/photo-1639762681485-074b7f4ec651?w=800&q=80"
+    previewImage: "https://images.unsplash.com/photo-1621504450181-5d356f61d307?w=800&q=80"
   },
   {
     id: "lst_4",
@@ -239,6 +239,7 @@ export default function Home() {
                     src={listing.previewImage || "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"}
                     alt={`${listing.name} preview`}
                     fill
+                    referrerPolicy="no-referrer"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
